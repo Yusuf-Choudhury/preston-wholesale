@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { User, ShoppingBag, Menu } from "lucide-react"; // Standard icons
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -14,46 +15,43 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 border-b ${
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled 
-          ? "bg-[#050505]/90 backdrop-blur-xl border-white/10 py-4" 
-          : "bg-transparent border-transparent py-6"
+          ? "bg-black/95 border-b border-white/10 py-4" 
+          : "bg-gradient-to-b from-black/80 to-transparent py-6"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         
-        {/* LOGO */}
-        <Link href="/" className="flex flex-col group">
-           <span className="font-serif text-2xl text-white tracking-tight font-bold group-hover:text-amber-500 transition-colors">PRESTON.</span>
-           <span className="text-[8px] text-zinc-500 uppercase tracking-[0.3em] group-hover:text-white transition-colors">Wholesale</span>
+        {/* LEFT: Logo */}
+        <Link href="/" className="flex flex-col z-50">
+           <span className="font-serif text-2xl text-white font-bold tracking-tight">PRESTON.</span>
         </Link>
 
-        {/* DESKTOP LINKS */}
-        <div className="hidden md:flex items-center gap-8">
-          <Link href="/" className="text-[11px] uppercase tracking-[0.2em] text-zinc-300 hover:text-white transition-colors">
+        {/* CENTER: Standard Navigation (Like Salaam Cola) */}
+        <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+          <Link href="/" className="text-xs font-bold uppercase tracking-widest text-zinc-300 hover:text-amber-500 transition-colors">
             Home
           </Link>
-          <Link href="/shop" className="text-[11px] uppercase tracking-[0.2em] text-zinc-300 hover:text-white transition-colors">
-            Inventory
+          <Link href="/shop" className="text-xs font-bold uppercase tracking-widest text-zinc-300 hover:text-amber-500 transition-colors">
+            Shop
           </Link>
-          <Link href="/contact" className="text-[11px] uppercase tracking-[0.2em] text-zinc-300 hover:text-white transition-colors">
+          <Link href="/contact" className="text-xs font-bold uppercase tracking-widest text-zinc-300 hover:text-amber-500 transition-colors">
             Contact
+          </Link>
+          <Link href="/contact" className="text-xs font-bold uppercase tracking-widest text-zinc-300 hover:text-amber-500 transition-colors">
+            About
           </Link>
         </div>
 
-        {/* ACTIONS */}
+        {/* RIGHT: Icons & Actions */}
         <div className="flex items-center gap-6">
-          <Link 
-            href="/contact" 
-            className="hidden md:block text-[10px] font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors"
-          >
-            Client Login
+          <Link href="/contact" className="group flex items-center gap-2 text-zinc-300 hover:text-white transition-colors">
+            <User className="w-4 h-4" />
+            <span className="hidden lg:block text-[10px] uppercase tracking-widest">My Account</span>
           </Link>
-          <Link 
-            href="/contact"
-            className="px-6 py-3 bg-amber-700 text-[10px] font-bold uppercase tracking-widest text-white hover:bg-amber-600 transition-all rounded-sm shadow-lg shadow-amber-900/20"
-          >
-            Apply for Trade
+          <Link href="/contact" className="flex items-center gap-2 px-5 py-2 bg-white text-black text-[10px] font-bold uppercase tracking-widest hover:bg-amber-500 transition-colors rounded-sm">
+            Trade Portal
           </Link>
         </div>
       </div>
