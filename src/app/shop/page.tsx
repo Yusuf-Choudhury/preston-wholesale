@@ -66,7 +66,7 @@ export default function ShopPage() {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {FEATURED_PRODUCTS.map((product, index) => (
-            <motion.div
+            <main className="bg-[#050505] min-h-screen text-white">
               key={product.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +84,20 @@ export default function ShopPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90" />
               </div>
-
+              <section className="relative w-full h-[60vh] overflow-hidden">
+                <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+                  <source src="/logistics-truck.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/20 to-black/60" />
+                <div className="absolute bottom-12 left-6 md:left-12 max-w-2xl">
+                   <span className="px-3 py-1 bg-amber-600 text-white text-[9px] font-bold uppercase tracking-widest rounded-full mb-4 inline-block">
+                     Global Logistics
+                   </span>
+                   <h1 className="text-5xl md:text-7xl font-serif text-white drop-shadow-lg">
+                     Master Inventory.
+                   </h1>
+                </div>
+              </section>
               {/* Text Layer (Bottom) */}
               <div className="absolute bottom-0 left-0 w-full p-8 z-10">
                 <p className="text-[10px] uppercase tracking-widest text-amber-400 mb-2">
