@@ -1,140 +1,162 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "../components/Navbar"; 
 import Footer from "../components/Footer";
-import { Star } from "lucide-react";
-
-// Mock Data
-const REVIEWS = [
-  { name: "James H.", text: "Best wholesale pricing in London." },
-  { name: "Sarah L.", text: "Fast dispatch and authentic stock." },
-  { name: "Ritz Hotel", text: "Our go-to supplier for premium spirits." },
-  { name: "Urban Bar", text: "Flawless logistics every time." },
-];
-
-const PRODUCTS = [
-  { name: "Obsidian Energy", category: "Energy", image: "/product-can.jpg", price: "£14.99" },
-  { name: "Glacier Pure", category: "Water", image: "/product-water.jpg", price: "£8.50" },
-  { name: "Amber Reserve", category: "Spirits", image: "/product-can.jpg", price: "£45.00" },
-  { name: "Voss Sparkle", category: "Water", image: "/product-water.jpg", price: "£12.99" },
-];
+import { ArrowRight, Globe, ShieldCheck, Zap } from "lucide-react";
 
 export default function HomePage() {
   return (
     <main className="bg-black min-h-screen text-white">
       <Navbar />
 
-      {/* 1. HERO SECTION (Scaled Down Video Container) */}
-      <section className="relative pt-32 pb-20 px-6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+      {/* 1. HERO SECTION: Big, Bold, Centered */}
+      <section className="relative h-screen w-full flex flex-col items-center justify-center text-center px-4 overflow-hidden pt-20">
+        
+        {/* Glow Effects */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px]" />
+        
+        <div className="relative z-10 max-w-4xl mx-auto space-y-6">
+          <span className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-blue-400 text-xs font-medium backdrop-blur-md">
+            New: Series IV Logistics Network
+          </span>
+          <h1 className="text-6xl md:text-8xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+            Supply Chain.<br />Reimagined.
+          </h1>
+          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+            Preston Wholesale connects premium retailers with global inventory. 
+            Automated. Verified. Instant.
+          </p>
           
-          {/* Text Left */}
-          <div className="space-y-8 text-center lg:text-left">
-            <h1 className="text-5xl md:text-7xl font-serif text-white leading-[1.1]">
-              The Art of <br />
-              <span className="text-amber-500">Global Supply.</span>
-            </h1>
-            <p className="text-zinc-400 text-sm leading-relaxed max-w-md mx-auto lg:mx-0">
-              We connect premium retailers with exclusive, high-margin inventory. 
-              Verified authenticity, 24h dispatch, and volume pricing.
-            </p>
-            <div className="flex justify-center lg:justify-start gap-4">
-              <Link href="/shop" className="px-8 py-3 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-amber-500 transition-colors rounded-sm">
-                Shop Now
-              </Link>
-              <Link href="/contact" className="px-8 py-3 border border-white/20 text-white text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-colors rounded-sm">
-                Trade Login
-              </Link>
-            </div>
-          </div>
-
-          {/* Video Right (Contained, not full screen) */}
-          <div className="relative aspect-video rounded-lg overflow-hidden border border-white/10 shadow-2xl">
-            <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-              <source src="/hero-watch.mp4" type="video/mp4" />
-            </video>
+          <div className="flex flex-wrap justify-center gap-4 pt-4">
+            <Link href="/shop" className="px-8 py-4 bg-white text-black text-sm font-semibold rounded-full hover:bg-zinc-200 transition-colors flex items-center gap-2">
+              Browse Inventory <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link href="/contact" className="px-8 py-4 bg-zinc-900 border border-zinc-800 text-white text-sm font-semibold rounded-full hover:bg-zinc-800 transition-colors">
+              Trade Application
+            </Link>
           </div>
         </div>
-      </section>
 
-      {/* 2. REVIEWS SCROLLER */}
-      <section className="py-12 border-y border-white/5 bg-zinc-900/50 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-           <div className="flex gap-12 animate-scroll">
-              {[...REVIEWS, ...REVIEWS].map((review, i) => (
-                <div key={i} className="min-w-[250px] flex flex-col gap-2">
-                   <div className="flex text-amber-500 gap-1">
-                     <Star size={12} fill="currentColor" />
-                     <Star size={12} fill="currentColor" />
-                     <Star size={12} fill="currentColor" />
-                     <Star size={12} fill="currentColor" />
-                     <Star size={12} fill="currentColor" />
-                   </div>
-                   <p className="text-zinc-300 text-xs italic">"{review.text}"</p>
-                   <p className="text-zinc-500 text-[10px] uppercase font-bold">{review.name}</p>
-                </div>
-              ))}
-           </div>
+        {/* Hero Video Floating Below */}
+        <div className="mt-16 relative w-full max-w-5xl aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+          <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+            <source src="/hero-watch.mp4" type="video/mp4" />
+          </video>
         </div>
       </section>
 
-      {/* 3. PRODUCT GRID ("Refreshing Can Lineup") */}
-      <section className="py-24 max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl font-serif text-center mb-16">Live Inventory</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {PRODUCTS.map((product, index) => (
-            <div key={index} className="group bg-[#111] border border-white/5 rounded-sm p-4 hover:border-amber-500/50 transition-colors">
-              <div className="aspect-square relative mb-4 overflow-hidden bg-black rounded-sm">
-                <Image src={product.image} alt={product.name} fill className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-500" />
-              </div>
-              <p className="text-[10px] text-zinc-500 uppercase tracking-widest mb-1">{product.category}</p>
-              <h3 className="text-sm font-bold text-white mb-2">{product.name}</h3>
-              <div className="flex justify-between items-center">
-                 <span className="text-amber-500 text-xs font-bold">{product.price}</span>
-                 <button className="text-[10px] border border-white/20 px-3 py-1 text-white hover:bg-white hover:text-black transition-colors">
-                   Add
-                 </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* 2. BENTO GRID FEATURES (Apple Style) */}
+      <section className="py-32 px-4 md:px-8 max-w-7xl mx-auto">
+        <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center">Why Top Retailers Choose Us.</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-2 gap-6 h-auto md:h-[600px]">
+          
+          {/* Card 1: Large Left - Vibrant Gradient */}
+          <div className="md:col-span-2 md:row-span-2 relative bg-gradient-to-br from-blue-900 to-black rounded-3xl p-10 overflow-hidden border border-white/10 group">
+             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/30 blur-[80px]" />
+             <Globe className="w-12 h-12 text-blue-400 mb-6" />
+             <h3 className="text-3xl font-bold mb-4">Global Reach, Local Speed.</h3>
+             <p className="text-zinc-300 max-w-md">
+               Our decentralized logistics nodes ensure that stock sits closer to you. 
+               Delivery times reduced by 40% across UK and Europe.
+             </p>
+             <div className="absolute bottom-0 right-0 w-2/3 h-2/3 translate-x-12 translate-y-12">
+               <video autoPlay loop muted playsInline className="w-full h-full object-cover rounded-tl-2xl shadow-2xl opacity-80 group-hover:scale-105 transition-transform duration-700">
+                 <source src="/logistics-truck.mp4" type="video/mp4" />
+               </video>
+             </div>
+          </div>
 
-      {/* 4. FEATURE SECTION (Image Left, Text Right) */}
-      <section className="py-24 bg-[#0a0a0a]">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-           <div className="relative aspect-square rounded-sm overflow-hidden border border-white/10">
-             <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+          {/* Card 2: Top Right - Dark Minimal */}
+          <div className="bg-zinc-900 rounded-3xl p-8 border border-white/10 flex flex-col justify-center hover:bg-zinc-800 transition-colors">
+             <ShieldCheck className="w-10 h-10 text-green-400 mb-4" />
+             <h3 className="text-xl font-bold">100% Authentic.</h3>
+             <p className="text-zinc-400 text-sm mt-2">Verified chain of custody from factory to floor.</p>
+          </div>
+
+          {/* Card 3: Bottom Right - Video Background */}
+          <div className="relative bg-black rounded-3xl overflow-hidden border border-white/10 group">
+             <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity">
                <source src="/hero-can.mp4" type="video/mp4" />
              </video>
-           </div>
-           <div className="space-y-6">
-             <h2 className="text-4xl font-serif">Taste is Everything.</h2>
-             <p className="text-zinc-400 text-sm leading-relaxed">
-               We've tackled a bunch of challenges to create an awesome supply chain that stands out from the big names. 
-               Get ready for a unique logistics adventure that'll wow you with every shipment.
-             </p>
-             <Link href="/shop" className="text-amber-500 text-xs font-bold uppercase tracking-widest border-b border-amber-500 pb-1">
-               Read Our Story
-             </Link>
-           </div>
+             <div className="absolute bottom-0 left-0 p-8">
+                <h3 className="text-xl font-bold">Live Drops.</h3>
+                <p className="text-zinc-300 text-sm">New stock alerts daily.</p>
+             </div>
+          </div>
         </div>
       </section>
 
-      {/* 5. TRADE CTA BANNER */}
-      <section className="py-20 bg-amber-700 text-center px-6">
-        <h2 className="text-3xl md:text-5xl font-serif text-white mb-6">Trade Enquiries</h2>
-        <p className="text-white/80 text-sm max-w-xl mx-auto mb-8">
-          100% of our focus is on supporting businesses like yours. 
-          Your choice is more than a supplier – it's a decision to disrupt the status quo.
-        </p>
-        <Link href="/contact" className="px-10 py-4 bg-black text-white text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-colors rounded-sm">
-          Apply for Trade Account
-        </Link>
+      {/* 3. PRODUCT CAROUSEL (Clean Cards) */}
+      <section className="py-24 bg-zinc-950 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-end mb-12">
+            <h2 className="text-3xl font-bold">Latest Arrivals.</h2>
+            <Link href="/shop" className="text-blue-500 hover:text-blue-400 font-medium text-sm">View All &rarr;</Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+             {/* Product 1 */}
+             <div className="group bg-black rounded-2xl overflow-hidden border border-white/10 hover:border-blue-500/50 transition-all cursor-pointer">
+               <div className="aspect-square relative bg-zinc-900">
+                 <Image src="/product-can.jpg" alt="Energy" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+               </div>
+               <div className="p-6">
+                 <div className="flex justify-between items-start mb-2">
+                   <div>
+                     <p className="text-xs text-blue-400 font-bold uppercase mb-1">Energy</p>
+                     <h3 className="text-lg font-bold">Obsidian Black</h3>
+                   </div>
+                   <span className="bg-zinc-800 text-white text-xs px-2 py-1 rounded">Stock Low</span>
+                 </div>
+                 <button className="w-full mt-4 py-2 bg-white text-black text-sm font-bold rounded-lg hover:bg-zinc-200 transition-colors">
+                   View Pricing
+                 </button>
+               </div>
+             </div>
+
+             {/* Product 2 */}
+             <div className="group bg-black rounded-2xl overflow-hidden border border-white/10 hover:border-blue-500/50 transition-all cursor-pointer">
+               <div className="aspect-square relative bg-zinc-900">
+                 <Image src="/product-water.jpg" alt="Water" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+               </div>
+               <div className="p-6">
+                 <div className="flex justify-between items-start mb-2">
+                   <div>
+                     <p className="text-xs text-blue-400 font-bold uppercase mb-1">Hydration</p>
+                     <h3 className="text-lg font-bold">Glacier Pure</h3>
+                   </div>
+                   <span className="bg-green-900/30 text-green-400 text-xs px-2 py-1 rounded">In Stock</span>
+                 </div>
+                 <button className="w-full mt-4 py-2 bg-white text-black text-sm font-bold rounded-lg hover:bg-zinc-200 transition-colors">
+                   View Pricing
+                 </button>
+               </div>
+             </div>
+
+             {/* Product 3 */}
+             <div className="group bg-black rounded-2xl overflow-hidden border border-white/10 hover:border-blue-500/50 transition-all cursor-pointer">
+               <div className="aspect-square relative bg-zinc-900">
+                 <Image src="/product-can.jpg" alt="Spirit" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+               </div>
+               <div className="p-6">
+                 <div className="flex justify-between items-start mb-2">
+                   <div>
+                     <p className="text-xs text-blue-400 font-bold uppercase mb-1">Spirits</p>
+                     <h3 className="text-lg font-bold">Amber Reserve</h3>
+                   </div>
+                   <span className="bg-purple-900/30 text-purple-400 text-xs px-2 py-1 rounded">Exclusive</span>
+                 </div>
+                 <button className="w-full mt-4 py-2 bg-white text-black text-sm font-bold rounded-lg hover:bg-zinc-200 transition-colors">
+                   View Pricing
+                 </button>
+               </div>
+             </div>
+          </div>
+        </div>
       </section>
 
       <Footer />

@@ -1,24 +1,13 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Lato } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-// 1. Load Luxury Fonts
-const playfair = Playfair_Display({ 
-  subsets: ["latin"], 
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const lato = Lato({ 
-  subsets: ["latin"], 
-  weight: ["300", "400", "700"],
-  variable: "--font-sans",
-  display: "swap",
-});
+// Use 'Inter' - the standard for modern/Apple-style UI
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Preston Wholesale | Global Logistics",
-  description: "The Art of High-Volume Supply.",
+  title: "Preston Wholesale | Pro Supply",
+  description: "Next-generation logistics for retail.",
 };
 
 export default function RootLayout({
@@ -27,8 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${lato.variable}`}>
-      <body className="bg-black text-white font-sans antialiased overflow-x-hidden">
+    <html lang="en">
+      <body className={`${inter.className} bg-black text-white antialiased overflow-x-hidden`}>
         {children}
       </body>
     </html>
