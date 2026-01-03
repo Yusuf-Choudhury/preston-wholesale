@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --luxury-black: #080808;
+  --luxury-card: #121212;
+  --trade-red: #D81B26;
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+body {
+  background-color: var(--luxury-black);
+  color: white;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom Selection */
+::selection {
+  background: var(--trade-red);
+  color: white;
+}
+
+/* Trade Logic: Blur Prices for Guests */
+.trade-blur {
+  filter: blur(8px);
+  user-select: none;
+  opacity: 0.5;
+  transition: all 0.5s ease;
+}
+
+/* Glassmorphism Utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+}
+
+/* Smooth Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+}
