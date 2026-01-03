@@ -1,8 +1,8 @@
 import "./globals.css";
 import { AuthProvider } from "../context/AuthContext";
+import { CartProvider } from "../context/CartContext";
 import Navbar from "../components/Navbar";
-import CartDrawer from "../components/CartDrawer"; // Add the Drawer here
-import { CartProvider } from "../context/CartContext"; // Add the Provider here
+import CartDrawer from "../components/CartDrawer"; // We use this instead of Cart
 
 export const metadata = {
   title: "Preston Wholesale",
@@ -19,6 +19,7 @@ export default function RootLayout({
       <body className="bg-black text-white antialiased">
         <AuthProvider>
           <CartProvider>
+            {/* The Navbar and Drawer are globally available */}
             <Navbar />
             <CartDrawer />
             {children}
