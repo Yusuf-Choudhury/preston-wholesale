@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "../src/app/globals.css";
 import { CartProvider } from "../src/context/CartContext";
-import Cart from "../src/components/Cart";
+import CartDrawer from "../src/components/CartDrawer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className="bg-[#050505] text-white antialiased selection:bg-[#D81B26] selection:text-white">
         <CartProvider>
           {children}
-          <Cart />
+          <CartDrawer />
         </CartProvider>
       </body>
     </html>
